@@ -1,0 +1,6 @@
+{
+  "name": "Hansraj Digital Academy Portal",
+  "description": "Feedback, Inquiry, and Admin Management portal for the Digital Marketing Plus Generative AI program at Hansraj College.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

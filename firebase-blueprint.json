@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Student academic registration or general query.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique inquiry UUID identifier." },
+        "name": { "type": "string", "description": "Full name of the inquiring student." },
+        "email": { "type": "string", "format": "email", "description": "Email address of the student." },
+        "phone": { "type": "string", "description": "Contact number with international or local format." },
+        "course": { "type": "string", "description": "Selected professional course of interest." },
+        "message": { "type": "string", "description": "Personal question prompt submitted." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Submission ISO timestamp." },
+        "status": { "type": "string", "enum": ["pending", "responded"], "description": "Handling status state." },
+        "responseMessage": { "type": "string", "description": "Resolution message sent by admissions assistant." },
+        "respondedAt": { "type": "string", "format": "date-time", "description": "ISO timestamp of responses." }
+      },
+      "required": ["id", "name", "email", "phone", "course", "message", "createdAt", "status"]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "Course evaluation or alumni testimonial review.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique testimony UUID identifier." },
+        "name": { "type": "string", "description": "Alumni student reviewer full name." },
+        "email": { "type": "string", "format": "email", "description": "Verified student email address." },
+        "course": { "type": "string", "description": "The specific enrolled program topic reviewed." },
+        "rating": { "type": "integer", "description": "Review quality scale value from 1 to 5." },
+        "message": { "type": "string", "description": "Detailed notes about learning experience." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Review submission ISO timestamp." }
+      },
+      "required": ["id", "name", "email", "course", "rating", "message", "createdAt"]
+    },
+    "FAQEntry": {
+      "title": "FAQEntry",
+      "description": "Information or dynamic timing advice for the Student Knowledge Hub.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique FAQ advice entry identifier." },
+        "question": { "type": "string", "description": "Common student question asked." },
+        "answer": { "type": "string", "description": "Clear academic coordinate resolution text." },
+        "category": { "type": "string", "enum": ["courses", "admissions", "fees", "institution"], "description": "FAQ navigation group." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last edit timestamp." }
+      },
+      "required": ["id", "question", "answer", "category", "createdAt"]
+    }
+  },
+  "firestore": {
+    "inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "Submissions and responses by admissions Desk."
+    },
+    "feedback/{feedbackId}": {
+      "schema": "Feedback",
+      "description": "Alumni testimonials displayed on Home view."
+    },
+    "faqs/{faqId}": {
+      "schema": "FAQEntry",
+      "description": "Dynamic Student Knowledge Hub solutions database."
+    }
+  }
+}
